@@ -9,6 +9,7 @@
 #include "route_planner.h"
 
 using namespace std::experimental;
+using namespace std;
 
 static std::optional<std::vector<std::byte>> ReadFile(const std::string &path)
 {   
@@ -25,6 +26,20 @@ static std::optional<std::vector<std::byte>> ReadFile(const std::string &path)
     if( contents.empty() )
         return std::nullopt;
     return std::move(contents);
+}
+
+void Read_user_input(float &var, const string var_name){
+    float val = 0.0;
+    cout << "Enter the value for ( " + var_name + " ):  ";
+    cin >> val;
+
+    while (cin.fail() || val < 0 || val > 100){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Your input should in range (0 - 100). Please try again:";
+        cin >> val;
+    }
+    var = val;
 }
 
 int main(int argc, const char **argv)
@@ -52,15 +67,26 @@ int main(int argc, const char **argv)
             osm_data = std::move(*data);
     }
     
-    // TODO 1: Declare floats `start_x`, `start_y`, `end_x`, and `end_y` and get
+    // Declare floats `start_x`, `start_y`, `end_x`, and `end_y` and get
     // user input for these values using std::cin. Pass the user input to the
     // RoutePlanner object below in place of 10, 10, 90, 90.
+    float start_x = 0.0;
+    float start_y = 0.0;
+    float end_x = 0.0;
+    float end_y = 0.0;
+
+    // Read the start coordinates and end coordinates to the var which have been just declared.
+    Read_user_input(start_x, "start_x");
+    Read_user_input(start_y, "start_y");
+    Read_user_input(end_x, "end_x");
+    Read_user_input(end_y, "end_y");
+
 
     // Build Model.
     RouteModel model{osm_data};
 
     // Create RoutePlanner object and perform A* search.
-    RoutePlanner route_planner{model, 10, 10, 90, 90};
+    RoutePlanner route_planner{model, start_x, start_y, end_x, end_y};
     route_planner.AStarSearch();
 
     std::cout << "Distance: " << route_planner.GetDistance() << " meters. \n";
@@ -68,7 +94,7 @@ int main(int argc, const char **argv)
     // Render results of search.
     Render render{model};
 
-    auto display = io2d::output_surface{400, 400, io2d::format::argb32, io2d::scaling::none, io2d::refresh_style::fixed, 30};
+    auto display = io2d::output_surface{800, 800, io2d::format::argb32, io2d::scaling::none, io2d::refresh_style::fixed, 30};
     display.size_change_callback([](io2d::output_surface& surface){
         surface.dimensions(surface.display_dimensions());
     });
@@ -76,4 +102,5 @@ int main(int argc, const char **argv)
         render.Display(surface);
     });
     display.begin_show();
+    //cout<< "hello world"<<endl;
 }

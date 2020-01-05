@@ -22,9 +22,16 @@ class RouteModel : public Model {
         float distance(Node other) const {
             return std::sqrt(std::pow((x - other.x), 2) + std::pow((y - other.y), 2));
         }
+        /* distance函数： 返回两个点在之间的欧式直线距离
+         * 输入 input：   另外一个 Node
+         * 输出 Output：  两个点之间的直线距离
+         */
 
         Node(){}
         Node(int idx, RouteModel * search_model, Model::Node node) : Model::Node(node), parent_model(search_model), index(idx) {}
+        // List constructor： index = idx；
+        //                    Node = node；
+        //                    parement_model = search_model.
 
       private:
         int index;

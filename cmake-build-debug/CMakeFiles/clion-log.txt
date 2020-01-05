@@ -1,0 +1,39 @@
+/home/wz/Downloads/clion-2019.3.2/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/usr/bin/make -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -G "CodeBlocks - Unix Makefiles" /home/wz/CppND-Route-Planning-Project
+-- The C compiler identification is GNU 9.2.1
+-- The CXX compiler identification is GNU 9.2.1
+-- Check for working C compiler: /usr/bin/gcc
+-- Check for working C compiler: /usr/bin/gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/g++
+-- Check for working CXX compiler: /usr/bin/g++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.1") 
+CMake Warning (dev) at cmake/FindCairo.cmake:63 (set):
+  Cannot set "CAIRO_PATH": current scope has no parent.
+Call Stack (most recent call first):
+  CMakeLists.txt:16 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Found Cairo: /usr/include/cairo (found version "1.15.10") 
+-- Checking for module 'GraphicsMagick'
+--   Found GraphicsMagick, version 1.3.28
+-- Found GraphicsMagick: /usr/include/GraphicsMagick  
+-- Found PythonInterp: /usr/bin/python (found version "2.7.17") 
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/wz/CppND-Route-Planning-Project/cmake-build-debug
